@@ -1,0 +1,15 @@
+
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: restaurant
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./restaurant.sql:/docker-entrypoint-initdb.d/restaurant.sql:ro
+volumes:
+  db_data:
