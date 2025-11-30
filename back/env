@@ -1,6 +1,0 @@
-# Google Cloud MySQL configuration,the file is env.file
-INSTANCE_CONNECTION_NAME=imposing-timer-474216-b7:us-central1:cis454team11
-DB_USER=root
-DB_PASS=CIS454team_11
-DB_NAME=cycle_tracker
-DB_PORT=3306
