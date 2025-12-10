@@ -1,16 +1,16 @@
-Item,Category,Unit,Current_Quantity,Avg_Weekly_Usage,Recommended_Order_Quantity
-Arborio Rice,Pantry,lbs,40,29.0,18
-Basil (Fresh),Produce,bunches,40,13.333333333333334,0
-Cannellini Beans,Pantry,cans,5,13.666666666666666,23
-Extra Virgin Olive Oil,Pantry,bottles,30,33.0,36
-Fresh Mozzarella,Dairy,lbs,6,14.333333333333334,23
-Garlic Bulbs,Produce,bulbs,10,11.333333333333334,13
-Italian Sausage,Meat,lbs,20,14.333333333333334,9
-Parmesan Cheese,Dairy,lbs,30,25.666666666666668,22
-Penne Pasta,Pantry,lbs,30,12.0,0
-Pizza Dough Balls,Bakery,units,50,31.0,12
-Prosciutto,Meat,lbs,70,26.0,0
-Red Wine Vinegar,Pantry,bottles,12,23.333333333333332,35
-San Marzano Tomatoes,Pantry,cans,50,21.666666666666668,0
-Spaghetti Pasta,Pantry,lbs,20,20.0,20
-Tomato Paste,Pantry,cans,20,16.0,12
+Item,Category,Unit,Current_Quantity,Avg_Weekly_Usage,Recommended_Order_Quantity,Predicted_Quantity,Forecasted_Ingredient_Demand
+Arborio Rice,Pantry,lbs,40,29.0,18,27.500000000000014,12.0
+Basil (Fresh),Produce,bunches,40,13.333333333333334,0,34.00000000000001,21.4
+Cannellini Beans,Pantry,cans,5,13.666666666666666,23,0.0,0.0
+Extra Virgin Olive Oil,Pantry,bottles,30,33.0,36,15.0,9.780000000000001
+Fresh Mozzarella,Dairy,lbs,6,14.333333333333334,60,0.0,65.6
+Garlic Bulbs,Produce,bulbs,10,11.333333333333334,36,0.0,46.0
+Italian Sausage,Meat,lbs,20,14.333333333333334,22,10.0,41.25
+Parmesan Cheese,Dairy,lbs,30,25.666666666666668,22,20.0,21.65
+Penne Pasta,Pantry,lbs,30,12.0,0,20.000000000000007,0.0
+Pizza Dough Balls,Bakery,units,50,31.0,174,41.500000000000014,224.0
+Prosciutto,Meat,lbs,70,26.0,0,62.000000000000014,16.0
+Red Wine Vinegar,Pantry,bottles,12,23.333333333333332,35,0.0,0.0
+San Marzano Tomatoes,Pantry,cans,50,21.666666666666668,109,43.000000000000014,159.0
+Spaghetti Pasta,Pantry,lbs,20,20.0,37,8.0,56.25
+Tomato Paste,Pantry,cans,20,16.0,67,4.000000000000014,86.75

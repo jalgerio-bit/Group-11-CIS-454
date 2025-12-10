@@ -1,0 +1,43 @@
+Dish,Ingredient,Unit,QtyPerDish
+Margherita Pizza,Pizza Dough Balls,units,1.0
+Margherita Pizza,San Marzano Tomatoes,cans,0.5
+Margherita Pizza,Tomato Paste,cans,0.25
+Margherita Pizza,Fresh Mozzarella,lbs,0.3
+Margherita Pizza,Basil (Fresh),bunches,0.1
+Margherita Pizza,Extra Virgin Olive Oil,bottles,0.02
+Margherita Pizza,Parmesan Cheese,lbs,0.05
+Prosciutto Pizza,Pizza Dough Balls,units,1.0
+Prosciutto Pizza,Tomato Paste,cans,0.25
+Prosciutto Pizza,Fresh Mozzarella,lbs,0.28
+Prosciutto Pizza,Prosciutto,lbs,0.2
+Prosciutto Pizza,Basil (Fresh),bunches,0.05
+Prosciutto Pizza,Extra Virgin Olive Oil,bottles,0.02
+Sausage Tomato Pasta,Spaghetti Pasta,lbs,0.25
+Sausage Tomato Pasta,San Marzano Tomatoes,cans,0.4
+Sausage Tomato Pasta,Tomato Paste,cans,0.15
+Sausage Tomato Pasta,Italian Sausage,lbs,0.25
+Sausage Tomato Pasta,Garlic Bulbs,bulbs,0.2
+Sausage Tomato Pasta,Extra Virgin Olive Oil,bottles,0.02
+Sausage Tomato Pasta,Parmesan Cheese,lbs,0.05
+Pasta al Pomodoro,Spaghetti Pasta,lbs,0.25
+Pasta al Pomodoro,San Marzano Tomatoes,cans,0.35
+Pasta al Pomodoro,Tomato Paste,cans,0.1
+Pasta al Pomodoro,Garlic Bulbs,bulbs,0.15
+Pasta al Pomodoro,Basil (Fresh),bunches,0.05
+Pasta al Pomodoro,Extra Virgin Olive Oil,bottles,0.02
+Pasta al Pomodoro,Parmesan Cheese,lbs,0.05
+Pasta e Fagioli,Penne Pasta,lbs,0.25
+Pasta e Fagioli,Cannellini Beans,cans,0.35
+Pasta e Fagioli,San Marzano Tomatoes,cans,0.25
+Pasta e Fagioli,Tomato Paste,cans,0.1
+Pasta e Fagioli,Garlic Bulbs,bulbs,0.15
+Pasta e Fagioli,Extra Virgin Olive Oil,bottles,0.02
+Risotto al Parmigiano,Arborio Rice,lbs,0.3
+Risotto al Parmigiano,Parmesan Cheese,lbs,0.08
+Risotto al Parmigiano,Garlic Bulbs,bulbs,0.1
+Risotto al Parmigiano,Extra Virgin Olive Oil,bottles,0.02
+Caprese (Canned),Fresh Mozzarella,lbs,0.2
+Caprese (Canned),San Marzano Tomatoes,cans,0.25
+Caprese (Canned),Basil (Fresh),bunches,0.05
+Caprese (Canned),Extra Virgin Olive Oil,bottles,0.01
+Caprese (Canned),Red Wine Vinegar,bottles,0.01

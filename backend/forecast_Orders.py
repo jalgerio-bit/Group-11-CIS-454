@@ -1,7 +1,9 @@
-
 import sys
 import math
 import pandas as pd
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+import os
 
 
 def load_snapshots(paths):
@@ -85,6 +87,97 @@ def compute_reorder(df):
     return df
 
 
+def predict_future_usage(concat_df):
+    """Predict future inventory needs using linear regression."""
+    pivot_qty = concat_df.pivot_table(
+        index="Item",
+        columns="snapshot",
+        values="Quantity",
+        aggfunc="first"
+    ).sort_index(axis=1)
+
+    pivot_qty = pivot_qty.ffill(axis=1).fillna(0)
+    predictions = []
+
+    for item in pivot_qty.index:
+        y = pivot_qty.loc[item].values
+        X = [[i] for i in range(len(y))]
+        model = LinearRegression()
+        model.fit(X, y)
+        next_week = model.predict([[len(y)]])[0]
+        predictions.append({"Item": item, "Predicted_Quantity": max(0, next_week)})
+
+    return pd.DataFrame(predictions)
+
+
+def generate_visualizations(concat_df, output_dir):
+    """Generate and save visualizations for inventory trends."""
+    pivot_qty = concat_df.pivot_table(
+        index="Item",
+        columns="snapshot",
+        values="Quantity",
+        aggfunc="first"
+    ).sort_index(axis=1)
+
+    pivot_qty = pivot_qty.ffill(axis=1).fillna(0)
+
+    for item in pivot_qty.index:
+        plt.figure()
+        plt.plot(range(pivot_qty.shape[1]), pivot_qty.loc[item], marker='o', label='Actual')
+        plt.title(f"Inventory Trend for {item}")
+        plt.xlabel("Week")
+        plt.ylabel("Quantity")
+        plt.legend()
+        plt.savefig(f"{output_dir}/{item}_trend.png")
+        plt.close()
+
+
+# --- Recipe + sales plan helpers ---
+def load_recipes(path):
+    """Load a recipe table with columns: Dish, Ingredient, Unit, QtyPerDish."""
+    if not os.path.exists(path):
+        return None
+    df = pd.read_csv(path)
+    required = {"Dish", "Ingredient", "Unit", "QtyPerDish"}
+    if not required.issubset(df.columns):
+        missing = required - set(df.columns)
+        raise ValueError(f"recipes.csv is missing columns: {', '.join(missing)}")
+    return df
+
+
+def load_sales_plan(path):
+    """Load a sales plan table with columns: Dish, Qty [, Multiplier]."""
+    if not os.path.exists(path):
+        return None
+    df = pd.read_csv(path)
+    required = {"Dish", "Qty"}
+    if not required.issubset(df.columns):
+        missing = required - set(df.columns)
+        raise ValueError(f"sales_plan.csv is missing columns: {', '.join(missing)}")
+    if "Multiplier" not in df.columns:
+        df["Multiplier"] = 1.0
+    df["Multiplier"] = df["Multiplier"].fillna(1.0)
+    return df
+
+
+def compute_ingredient_demand(recipes_df, sales_df):
+    """Aggregate ingredient demand from dish recipes and planned sales."""
+    if recipes_df is None or sales_df is None:
+        return pd.DataFrame(columns=["Item", "Forecasted_Ingredient_Demand"])
+
+    merged = sales_df.merge(recipes_df, on="Dish", how="left")
+    merged["EffectiveQty"] = merged["Qty"] * merged["Multiplier"]
+    merged["Required"] = merged["EffectiveQty"] * merged["QtyPerDish"]
+
+    demand = (
+        merged.groupby("Ingredient")["Required"]
+        .sum()
+        .reset_index()
+        .rename(columns={"Ingredient": "Item", "Required": "Forecasted_Ingredient_Demand"})
+    )
+    return demand
+
+
 def main(args):
     if len(args) < 5:
         print("Usage: python forecast_orders.py week1.csv week2.csv week3.csv week4.csv")
@@ -101,7 +194,12 @@ def main(args):
 
     summary = attach_metadata(usage_df, latest_snapshot)
     summary = compute_reorder(summary)
-    summary = summary.sort_values("Item")
+    predictions = predict_future_usage(concat_df)
+    summary = summary.merge(predictions, on="Item", how="left")
+
+    output_dir = "visualizations"
+    os.makedirs(output_dir, exist_ok=True)
+    generate_visualizations(concat_df, output_dir)
 
     out_file = "next_week_orders.csv"
     summary.to_csv(out_file, index=False)
